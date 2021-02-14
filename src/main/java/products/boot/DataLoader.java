@@ -77,8 +77,6 @@ public class DataLoader implements InitializingBean {
         var products = new ArrayList<Product>();
         for (CSVRecord r : records) {
             Optional<Category> category = categoryService.findById(Long.valueOf(r.get("CATEGORY_ID")));
-            String id = r.get("NAME");
-            String category_name = r.get("DESCRIPTION");
             Product p = new Product(
                 Long.valueOf(r.get("ID")),
                 r.get("NAME"),
@@ -90,7 +88,6 @@ public class DataLoader implements InitializingBean {
             );
 
             products.add(p);
-            System.out.println(id + " " + category_name);
         }
         productService.saveAll(products);
     }
